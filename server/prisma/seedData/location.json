@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "country": "Albania",
+    "city": "Tirana",
+    "state": "Tirana",
+    "address": "Rruga Deshmoret e 4 Shkurtit",
+    "postalCode": "1001",
+    "coordinates": "POINT(19.819025 41.327546)"
+  },
+  {
+    "id": 2,
+    "country": "Albania",
+    "city": "Tirana",
+    "state": "Tirana",
+    "address": "Bulevardi Zogu I",
+    "postalCode": "1001",
+    "coordinates": "POINT(19.818699 41.330686)"
+  },
+  {
+    "id": 3,
+    "country": "Albania",
+    "city": "Tirana",
+    "state": "Tirana",
+    "address": "Rruga e Elbasanit",
+    "postalCode": "1001",
+    "coordinates": "POINT(19.820000 41.325000)"
+  },
+  {
+    "id": 4,
+    "country": "Albania",
+    "city": "Tirana",
+    "state": "Tirana",
+    "address": "Rruga Myslym Shyri",
+    "postalCode": "1001",
+    "coordinates": "POINT(19.817000 41.323000)"
+  },
+  {
+    "id": 5,
+    "country": "Albania",
+    "city": "Tirana",
+    "state": "Tirana",
+    "address": "Bulevardi Dëshmorët e Kombit",
+    "postalCode": "1001",
+    "coordinates": "POINT(19.819000 41.327000)"
+  },
+  {
+    "id": 6,
+    "country": "Albania",
+    "city": "Tirana",
+    "state": "Tirana",
+    "address": "Rruga e Kavajës",
+    "postalCode": "1001",
+    "coordinates": "POINT(19.815000 41.320000)"
+  },
+  {
+    "id": 7,
+    "country": "Albania",
+    "city": "Tirana",
+    "state": "Tirana",
+    "address": "Rruga e Durrësit",
+    "postalCode": "1001",
+    "coordinates": "POINT(19.822000 41.328000)"
+  },
+  {
+    "id": 8,
+    "country": "Albania",
+    "city": "Tirana",
+    "state": "Tirana",
+    "address": "Rruga e Dibres",
+    "postalCode": "1001",
+    "coordinates": "POINT(19.816000 41.324000)"
+  },
+  {
+    "id": 9,
+    "country": "Albania",
+    "city": "Tirana",
+    "state": "Tirana",
+    "address": "Rruga e Barrikadave",
+    "postalCode": "1001",
+    "coordinates": "POINT(19.821000 41.326000)"
+  },
+  {
+    "id": 10,
+    "country": "Albania",
+    "city": "Tirana",
+    "state": "Tirana",
+    "address": "Rruga e Bogdanëve",
+    "postalCode": "1001",
+    "coordinates": "POINT(19.818000 41.322000)"
+  }
+]

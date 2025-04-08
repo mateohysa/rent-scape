@@ -1,7 +1,7 @@
 [
   {
-    "amountDue": 1500.0,
-    "amountPaid": 1500.0,
+    "amountDue": 500.0,
+    "amountPaid": 500.0,
     "dueDate": "2023-07-01T00:00:00Z",
     "paymentDate": "2023-06-28T00:00:00Z",
     "paymentStatus": "Paid",
@@ -10,7 +10,7 @@
     }
   },
   {
-    "amountDue": 1800.0,
+    "amountDue": 600.0,
     "amountPaid": 0.0,
     "dueDate": "2023-08-01T00:00:00Z",
     "paymentDate": "2023-07-28T00:00:00Z",
@@ -20,8 +20,8 @@
     }
   },
   {
-    "amountDue": 2200.0,
-    "amountPaid": 2200.0,
+    "amountDue": 350.0,
+    "amountPaid": 350.0,
     "dueDate": "2023-09-01T00:00:00Z",
     "paymentDate": "2023-08-30T00:00:00Z",
     "paymentStatus": "Paid",
@@ -30,8 +30,8 @@
     }
   },
   {
-    "amountDue": 1700.0,
-    "amountPaid": 1700.0,
+    "amountDue": 700.0,
+    "amountPaid": 700.0,
     "dueDate": "2023-07-15T00:00:00Z",
     "paymentDate": "2023-07-14T00:00:00Z",
     "paymentStatus": "Paid",
@@ -40,7 +40,7 @@
     }
   },
   {
-    "amountDue": 2000.0,
+    "amountDue": 900.0,
     "amountPaid": 0.0,
     "dueDate": "2023-08-15T00:00:00Z",
     "paymentDate": "2023-08-14T00:00:00Z",
@@ -50,8 +50,8 @@
     }
   },
   {
-    "amountDue": 2400.0,
-    "amountPaid": 2400.0,
+    "amountDue": 250.0,
+    "amountPaid": 250.0,
     "dueDate": "2023-09-15T00:00:00Z",
     "paymentDate": "2023-09-14T00:00:00Z",
     "paymentStatus": "Paid",
@@ -60,8 +60,8 @@
     }
   },
   {
-    "amountDue": 2200.0,
-    "amountPaid": 1100.0,
+    "amountDue": 450.0,
+    "amountPaid": 225.0,
     "dueDate": "2023-10-01T00:00:00Z",
     "paymentDate": "2023-09-25T00:00:00Z",
     "paymentStatus": "PartiallyPaid",
@@ -70,8 +70,8 @@
     }
   },
   {
-    "amountDue": 5000.0,
-    "amountPaid": 5000.0,
+    "amountDue": 900.0,
+    "amountPaid": 900.0,
     "dueDate": "2023-08-01T00:00:00Z",
     "paymentDate": "2023-07-30T00:00:00Z",
     "paymentStatus": "Paid",
@@ -80,8 +80,8 @@
     }
   },
   {
-    "amountDue": 3000.0,
-    "amountPaid": 1500.0,
+    "amountDue": 550.0,
+    "amountPaid": 275.0,
     "dueDate": "2023-11-01T00:00:00Z",
     "paymentDate": "2023-10-25T00:00:00Z",
     "paymentStatus": "PartiallyPaid",
@@ -90,8 +90,8 @@
     }
   },
   {
-    "amountDue": 2000.0,
-    "amountPaid": 2000.0,
+    "amountDue": 600.0,
+    "amountPaid": 600.0,
     "dueDate": "2023-08-15T00:00:00Z",
     "paymentDate": "2023-08-10T00:00:00Z",
     "paymentStatus": "Paid",
@@ -100,7 +100,7 @@
     }
   },
   {
-    "amountDue": 1000.0,
+    "amountDue": 200.0,
     "amountPaid": 0.0,
     "dueDate": "2023-09-01T00:00:00Z",
     "paymentDate": "2023-08-30T00:00:00Z",
@@ -110,8 +110,8 @@
     }
   },
   {
-    "amountDue": 1800.0,
-    "amountPaid": 1800.0,
+    "amountDue": 550.0,
+    "amountPaid": 550.0,
     "dueDate": "2023-10-01T00:00:00Z",
     "paymentDate": "2023-09-28T00:00:00Z",
     "paymentStatus": "Paid",
@@ -120,8 +120,8 @@
     }
   },
   {
-    "amountDue": 900.0,
-    "amountPaid": 450.0,
+    "amountDue": 400.0,
+    "amountPaid": 200.0,
     "dueDate": "2023-09-15T00:00:00Z",
     "paymentDate": "2023-09-10T00:00:00Z",
     "paymentStatus": "PartiallyPaid",
@@ -130,8 +130,8 @@
     }
   },
   {
-    "amountDue": 1500.0,
-    "amountPaid": 1500.0,
+    "amountDue": 500.0,
+    "amountPaid": 500.0,
     "dueDate": "2023-09-01T00:00:00Z",
     "paymentDate": "2023-08-30T00:00:00Z",
     "paymentStatus": "Paid",
@@ -140,7 +140,7 @@
     }
   },
   {
-    "amountDue": 2500.0,
+    "amountDue": 700.0,
     "amountPaid": 0.0,
     "dueDate": "2023-10-01T00:00:00Z",
     "paymentDate": "2023-09-28T00:00:00Z",
