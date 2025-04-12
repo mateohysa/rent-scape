@@ -26,7 +26,7 @@ export const api = createApi({
           const user = await getCurrentUser();
           const userRole = idToken?.payload["custom:role"] as string;
 
-          const endpoint = userRole === "manager" ? `/manager/${user?.id}` : `/tenants/${user?.id}`;
+          const endpoint = userRole === "manager" ? `/manager/${user?.userId}` : `/tenants/${user?.userId}`;
 
           let userDetailsResponse = await fetchWithBQ(endpoint);
 
