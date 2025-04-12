@@ -18,5 +18,8 @@ exports.TenantService = {
     createTenant: (tenantData) => __awaiter(void 0, void 0, void 0, function* () {
         // Any business logic goes here (validation, etc.)
         return tenantRepository_1.TenantRepository.create(tenantData);
+    }),
+    updateTenant: (cognitoId, tenantData) => __awaiter(void 0, void 0, void 0, function* () {
+        return tenantRepository_1.TenantRepository.update(cognitoId, tenantData);
     })
 };

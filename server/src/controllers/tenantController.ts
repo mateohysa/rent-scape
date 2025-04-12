@@ -27,3 +27,13 @@ export const createTenant = async (req: Request, res: Response): Promise<void> =
         res.status(500).json({message: "Error creating tenant", error: error.message});
     }
 }
+
+export const updateTenant = async (req: Request, res: Response): Promise<void> => {
+    try{
+        const {cognitoId} = req.params;
+        const tenant = await TenantService.updateTenant(cognitoId, req.body);
+        res.json(tenant);
+    }catch(error:any){
+        res.status(500).json({message: "Error updating tenant", error: error.message});
+    }
+}

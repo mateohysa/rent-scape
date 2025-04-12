@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createManager = exports.getManager = void 0;
+exports.updateManager = exports.createManager = exports.getManager = void 0;
 const managerService_1 = require("../service/managerService");
 const getManager = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -37,3 +37,14 @@ const createManager = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     }
 });
 exports.createManager = createManager;
+const updateManager = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { cognitoId } = req.params;
+        const manager = yield managerService_1.ManagerService.updateManager(cognitoId, req.body);
+        res.json(manager);
+    }
+    catch (error) {
+        res.status(500).json({ message: "Error updating manager", error: error.message });
+    }
+});
+exports.updateManager = updateManager;

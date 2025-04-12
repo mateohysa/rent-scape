@@ -8,6 +8,7 @@ const managerController_1 = require("../controllers/managerController");
 const router = express_1.default.Router();
 // Tenant management routes
 router.get("/:cognitoId", managerController_1.getManager);
+router.put("/:cognitoId", managerController_1.updateManager);
 router.post("/", managerController_1.createManager);
 // add more routes later, group them logically:
 // Property-related tenant routes

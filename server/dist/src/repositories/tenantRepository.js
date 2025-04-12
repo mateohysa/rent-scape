@@ -21,5 +21,11 @@ exports.TenantRepository = {
     }),
     create: (data) => __awaiter(void 0, void 0, void 0, function* () {
         return prisma.tenant.create({ data });
+    }),
+    update: (cognitoId, data) => __awaiter(void 0, void 0, void 0, function* () {
+        return prisma.tenant.update({
+            where: { cognitoId },
+            data
+        });
     })
 };

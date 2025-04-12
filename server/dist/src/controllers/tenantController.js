@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createTenant = exports.getTenant = void 0;
+exports.updateTenant = exports.createTenant = exports.getTenant = void 0;
 const tenantService_1 = require("../service/tenantService");
 const getTenant = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -37,3 +37,14 @@ const createTenant = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     }
 });
 exports.createTenant = createTenant;
+const updateTenant = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { cognitoId } = req.params;
+        const tenant = yield tenantService_1.TenantService.updateTenant(cognitoId, req.body);
+        res.json(tenant);
+    }
+    catch (error) {
+        res.status(500).json({ message: "Error updating tenant", error: error.message });
+    }
+});
+exports.updateTenant = updateTenant;

@@ -8,5 +8,9 @@ export const TenantService = {
   createTenant: async (tenantData: { cognitoId: string, name: string, email: string, phoneNumber: string }) => {
     // Any business logic goes here (validation, etc.)
     return TenantRepository.create(tenantData);
+  },
+
+  updateTenant: async (cognitoId: string, tenantData: { name: string, email: string, phoneNumber: string }) => {
+    return TenantRepository.update(cognitoId, tenantData);
   }
 };

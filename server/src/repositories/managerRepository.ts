@@ -11,5 +11,12 @@ export const ManagerRepository = {
   
   create: async (data: { cognitoId: string, name: string, email: string, phoneNumber: string }) => {
     return prisma.manager.create({ data });
+  },
+  
+  update: async (cognitoId: string, data: { name?: string, email?: string, phoneNumber?: string }) => {
+    return prisma.manager.update({
+      where: { cognitoId },
+      data
+    });
   }
 };

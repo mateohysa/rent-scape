@@ -9,6 +9,7 @@ const router = express_1.default.Router();
 // Tenant management routes
 router.get("/:cognitoId", tenantController_1.getTenant);
 router.post("/", tenantController_1.createTenant);
+router.put("/:cognitoId", tenantController_1.updateTenant);
 // If you add more routes later, group them logically:
 // Property-related tenant routes
 // router.get("/:cognitoId/properties", getTenantProperties);

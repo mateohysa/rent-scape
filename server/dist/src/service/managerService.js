@@ -18,5 +18,8 @@ exports.ManagerService = {
     createManager: (managerData) => __awaiter(void 0, void 0, void 0, function* () {
         // Any business logic goes here (validation, etc.)
         return managerRepository_1.ManagerRepository.create(managerData);
+    }),
+    updateManager: (cognitoId, managerData) => __awaiter(void 0, void 0, void 0, function* () {
+        return managerRepository_1.ManagerRepository.update(cognitoId, managerData);
     })
 };

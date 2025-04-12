@@ -1,10 +1,11 @@
 import express from "express";
-import { getManager, createManager } from "../controllers/managerController";
+import { getManager, createManager, updateManager } from "../controllers/managerController";
 
 const router = express.Router();
 
 // Tenant management routes
 router.get("/:cognitoId", getManager);
+router.put("/:cognitoId", updateManager);
 router.post("/", createManager);
 
 // add more routes later, group them logically:

@@ -12,5 +12,12 @@ export const TenantRepository = {
   
   create: async (data: { cognitoId: string, name: string, email: string, phoneNumber: string }) => {
     return prisma.tenant.create({ data });
+  },
+  
+  update: async (cognitoId: string, data: { name?: string, email?: string, phoneNumber?: string }) => {
+    return prisma.tenant.update({
+      where: { cognitoId },
+      data
+    });
   }
 };

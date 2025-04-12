@@ -20,5 +20,11 @@ exports.ManagerRepository = {
     }),
     create: (data) => __awaiter(void 0, void 0, void 0, function* () {
         return prisma.manager.create({ data });
+    }),
+    update: (cognitoId, data) => __awaiter(void 0, void 0, void 0, function* () {
+        return prisma.manager.update({
+            where: { cognitoId },
+            data
+        });
     })
 };
