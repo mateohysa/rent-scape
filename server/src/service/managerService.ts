@@ -12,5 +12,10 @@ export const ManagerService = {
   
   updateManager: async (cognitoId: string, managerData: { name?: string, email?: string, phoneNumber?: string }) => {
     return ManagerRepository.update(cognitoId, managerData);
+  },
+  
+  getManagerProperties: async (cognitoId: string) => {
+    // Get all properties managed by this manager
+    return ManagerRepository.findPropertiesByCognitoId(cognitoId);
   }
 };

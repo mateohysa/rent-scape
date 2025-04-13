@@ -37,3 +37,15 @@ export const updateManager = async (req: Request, res: Response): Promise<void> 
         res.status(500).json({message: "Error updating manager", error: error.message});
     }
 }
+
+export const getManagerProperties = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const { cognitoId } = req.params;
+        const properties = await ManagerService.getManagerProperties(cognitoId);
+        res.json(properties);
+    } catch (error: any) {
+        res.status(500).json({ 
+            message: `Error retrieving manager properties: ${error.message}` 
+        });
+    }
+}

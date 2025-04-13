@@ -37,3 +37,58 @@ export const updateTenant = async (req: Request, res: Response): Promise<void> =
         res.status(500).json({message: "Error updating tenant", error: error.message});
     }
 }
+
+export const getTenantProperties = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const { cognitoId } = req.params;
+        const properties = await TenantService.getTenantProperties(cognitoId);
+        res.json(properties);
+    } catch (error: any) {
+        res.status(500).json({ 
+            message: `Error retrieving tenant properties: ${error.message}` 
+        });
+    }
+}
+
+export const addFavoriteProperty = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const { cognitoId, propertyId } = req.params;
+        
+        const result = await TenantService.addFavoriteProperty(cognitoId, Number(propertyId));
+        
+        if (!result) {
+            res.status(404).json({ message: "Tenant not found" });
+            return;
+        }
+        
+        if (result.alreadyExists) {
+            res.status(409).json({ message: "Property already added as favorite" });
+            return;
+        }
+        
+        res.json(result.tenant);
+    } catch (error: any) {
+        res.status(500).json({ 
+            message: `Error adding favorite property: ${error.message}` 
+        });
+    }
+}
+
+export const removeFavoriteProperty = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const { cognitoId, propertyId } = req.params;
+        
+        const updatedTenant = await TenantService.removeFavoriteProperty(cognitoId, Number(propertyId));
+        
+        if (!updatedTenant) {
+            res.status(404).json({ message: "Tenant not found" });
+            return;
+        }
+        
+        res.json(updatedTenant);
+    } catch (error: any) {
+        res.status(500).json({ 
+            message: `Error removing favorite property: ${error.message}` 
+        });
+    }
+}
