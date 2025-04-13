@@ -8,6 +8,11 @@ import { authMiddleware } from "./middleware/authMiddleware";
 // import routes
 import tenantRoutes from "./routes/tenantRoutes";
 import managerRoutes from "./routes/managerRoutes";
+import leaseRoutes from "./routes/leaseRoutes"; 
+import applicationRoutes from "./routes/applicationRoutes";
+import propertyRoutes from "./routes/propertyRoutes";
+
+
 
 // CONFIGURATIONS
 dotenv.config();
@@ -21,7 +26,7 @@ app.use(morgan("common"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
-import propertyRoutes from "./routes/propertyRoutes";
+
 
 // ROUTES
 app.get("/", (req, res) => {
@@ -30,6 +35,8 @@ app.get("/", (req, res) => {
 app.use("/properties", propertyRoutes);
 app.use("/tenants", authMiddleware(["tenant"]), tenantRoutes);
 app.use("/manager", authMiddleware(["manager"]), managerRoutes);
+app.use("/applications", applicationRoutes);
+app.use("/leases", leaseRoutes);
 
 // SERVER
 const PORT = process.env.PORT || 3002;
