@@ -33,11 +33,11 @@ app.get("/", (req, res) => {
 });
 app.use("/properties", propertyRoutes_1.default);
 app.use("/tenants", (0, authMiddleware_1.authMiddleware)(["tenant"]), tenantRoutes_1.default);
-app.use("/manager", (0, authMiddleware_1.authMiddleware)(["manager"]), managerRoutes_1.default);
+app.use("/managers", (0, authMiddleware_1.authMiddleware)(["manager"]), managerRoutes_1.default);
 app.use("/applications", applicationRoutes_1.default);
 app.use("/leases", leaseRoutes_1.default);
 // SERVER
-const PORT = process.env.PORT || 3002;
-app.listen(PORT, () => {
+const PORT = Number(process.env.PORT) || 3002;
+app.listen(PORT, "0.0.0.0", () => {
     console.log(`Server is running on port ${PORT}`);
 });

@@ -15,9 +15,21 @@ const wkt_1 = require("@terraformer/wkt");
 const prisma = new client_1.PrismaClient();
 exports.ManagerRepository = {
     findByCognitoId: (cognitoId) => __awaiter(void 0, void 0, void 0, function* () {
-        return prisma.manager.findUnique({
-            where: { cognitoId }
-        });
+        console.log(`[DEBUG] Searching for manager with cognitoId: ${cognitoId}`);
+        try {
+            const manager = yield prisma.manager.findUnique({
+                where: { cognitoId }
+            });
+            console.log(`[DEBUG] Manager found: ${!!manager}`);
+            if (!manager) {
+                console.log(`[DEBUG] No manager found with cognitoId: ${cognitoId}`);
+            }
+            return manager;
+        }
+        catch (error) {
+            console.error(`[ERROR] Error finding manager: ${error}`);
+            throw error;
+        }
     }),
     create: (data) => __awaiter(void 0, void 0, void 0, function* () {
         return prisma.manager.create({ data });

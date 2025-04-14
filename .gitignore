@@ -35,3 +35,4 @@ server/.env.production.local
 
 client/.next/**
 node_modules/**
+todo.md

@@ -5,9 +5,20 @@ const prisma = new PrismaClient();
 
 export const ManagerRepository = {
   findByCognitoId: async (cognitoId: string) => {
-    return prisma.manager.findUnique({
-      where: { cognitoId }
-    });
+    console.log(`[DEBUG] Searching for manager with cognitoId: ${cognitoId}`);
+    try {
+      const manager = await prisma.manager.findUnique({
+        where: { cognitoId }
+      });
+      console.log(`[DEBUG] Manager found: ${!!manager}`);
+      if (!manager) {
+        console.log(`[DEBUG] No manager found with cognitoId: ${cognitoId}`);
+      }
+      return manager;
+    } catch (error) {
+      console.error(`[ERROR] Error finding manager: ${error}`);
+      throw error;
+    }
   },
   
   create: async (data: { cognitoId: string, name: string, email: string, phoneNumber: string }) => {

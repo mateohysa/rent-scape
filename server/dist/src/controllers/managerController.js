@@ -14,15 +14,19 @@ const managerService_1 = require("../service/managerService");
 const getManager = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { cognitoId } = req.params;
+        console.log(`[DEBUG] Controller: getManager request for cognitoId: ${cognitoId}`);
         const manager = yield managerService_1.ManagerService.getManager(cognitoId);
+        console.log(`[DEBUG] Controller: Manager service returned: ${!!manager}`);
         if (manager) {
             res.json(manager);
         }
         else {
+            console.log(`[DEBUG] Controller: No manager found, returning 404`);
             res.status(404).json({ message: "Manager not found" });
         }
     }
     catch (error) {
+        console.error(`[ERROR] Controller: Error retrieving manager: ${error.message}`);
         res.status(500).json({ message: "Error retrieving manager", error: error.message });
     }
 });

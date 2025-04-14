@@ -1,13 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faFacebook,
-  faInstagram,
-  faTwitter,
-  faLinkedin,
-  faYoutube,
-} from "@fortawesome/free-brands-svg-icons";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 const FooterSection = () => {
   return (
@@ -38,33 +32,15 @@ const FooterSection = () => {
               </li>
             </ul>
           </nav>
-          <div className="flex space-x-4 mb-4">
+          <div className="mb-4">
             <a
-              href="#"
-              aria-label="Facebook"
+              href="https://github.com/mateohysa/rent-scape"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub Repository"
               className="hover:text-primary-600"
             >
-              <FontAwesomeIcon icon={faFacebook} className="h-6 w-6" />
-            </a>
-            <a
-              href="#"
-              aria-label="Instagram"
-              className="hover:text-primary-600"
-            >
-              <FontAwesomeIcon icon={faInstagram} className="h-6 w-6" />
-            </a>
-            <a href="#" aria-label="Twitter" className="hover:text-primary-600">
-              <FontAwesomeIcon icon={faTwitter} className="h-6 w-6" />
-            </a>
-            <a
-              href="#"
-              aria-label="Linkedin"
-              className="hover:text-primary-600"
-            >
-              <FontAwesomeIcon icon={faLinkedin} className="h-6 w-6" />
-            </a>
-            <a href="#" aria-label="Youtube" className="hover:text-primary-600">
-              <FontAwesomeIcon icon={faYoutube} className="h-6 w-6" />
+              <FontAwesomeIcon icon={faGithub} className="h-6 w-6" />
             </a>
           </div>
         </div>

@@ -4,16 +4,22 @@ import { ManagerService} from "../service/managerService";
 export const getManager = async (req: Request, res: Response): Promise<void> => {
     try{
         const {cognitoId} = req.params;
+        console.log(`[DEBUG] Controller: getManager request for cognitoId: ${cognitoId}`);
+        
         const manager = await ManagerService.getManager(cognitoId);
+        console.log(`[DEBUG] Controller: Manager service returned: ${!!manager}`);
+        
         if(manager){
             res.json(manager);
         }
         else{
+            console.log(`[DEBUG] Controller: No manager found, returning 404`);
             res.status(404).json({message: "Manager not found"});
         }
         
         
     }catch(error:any){
+        console.error(`[ERROR] Controller: Error retrieving manager: ${error.message}`);
         res.status(500).json({message: "Error retrieving manager", error: error.message});
     }
     
