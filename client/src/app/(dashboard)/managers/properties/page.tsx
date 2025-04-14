@@ -62,8 +62,6 @@ const ManagerProperties = () => {
               property={property}
               showFavoriteButton={false}
               propertyLink={`/managers/properties/${property.id}`}
-              isFavorite={false}
-              onFavoriteToggle={() => {}}
             />
           ))}
         </div>

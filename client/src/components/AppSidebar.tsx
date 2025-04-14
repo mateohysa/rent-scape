@@ -22,7 +22,7 @@ import {
 import { NAVBAR_HEIGHT } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { useGetApplicationsQuery, useGetAuthUserQuery } from "@/state/api";
+import { useGetAuthUserQuery, useGetLeasesQuery } from "@/state/api";
 
 const AppSidebar = ({ userType }: AppSidebarProps) => {
   const pathname = usePathname();
@@ -30,28 +30,22 @@ const AppSidebar = ({ userType }: AppSidebarProps) => {
   const { data: authUser } = useGetAuthUserQuery();
   const [residencesHref, setResidencesHref] = useState("/tenants/favorites");
   
-  // Get applications to find the first residence ID for direct navigation
-  const { data: applications } = useGetApplicationsQuery(
-    {
-      userId: userType === "tenant" ? authUser?.cognitoInfo?.userId : undefined,
-      userType: "tenant"
-    },
+  // Get leases to find the first residence ID for direct navigation
+  const { data: leases } = useGetLeasesQuery(
+    userType === "tenant" ? authUser?.cognitoInfo?.userId || "0" : "0",
     { 
       skip: !authUser?.cognitoInfo?.userId || userType !== "tenant",
     }
   );
   
-  // Update residences link when applications are loaded
+  // Update residences link when leases are loaded
   useEffect(() => {
-    if (applications && applications.length > 0) {
-      const approvedApplication = applications.find(app => app.status === "Approved" && app.propertyId);
-      if (approvedApplication?.propertyId) {
-        setResidencesHref(`/tenants/residences/${approvedApplication.propertyId}`);
-      } else {
-        setResidencesHref("/tenants/favorites");
-      }
+    if (leases && leases.length > 0 && leases[0].propertyId) {
+      setResidencesHref(`/tenants/residences/${leases[0].propertyId}`);
+    } else {
+      setResidencesHref("/tenants/favorites");
     }
-  }, [applications]);
+  }, [leases]);
 
   const navLinks =
     userType === "manager"
