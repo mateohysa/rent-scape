@@ -49,6 +49,25 @@ const AppSidebar = ({ userType }: AppSidebarProps) => {
           { icon: Settings, label: "Settings", href: "/tenants/settings" },
         ];
 
+  // If sidebar is closed, only render a small toggle button
+  if (!open) {
+    return (
+      <div 
+        className="fixed top-0 left-0 z-50"
+        style={{
+          top: `${NAVBAR_HEIGHT + 10}px`,
+        }}
+      >
+        <button
+          className="bg-white shadow-md hover:bg-gray-100 p-2 rounded-r-md"
+          onClick={toggleSidebar}
+        >
+          <Menu className="h-6 w-6 text-gray-600" />
+        </button>
+      </div>
+    );
+  }
+
   return (
     <Sidebar
       collapsible="icon"
@@ -61,32 +80,16 @@ const AppSidebar = ({ userType }: AppSidebarProps) => {
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <div
-              className={cn(
-                "flex min-h-[56px] w-full items-center pt-3 mb-3",
-                open ? "justify-between px-6" : "justify-center"
-              )}
-            >
-              {open ? (
-                <>
-                  <h1 className="text-xl font-bold text-gray-800">
-                    {userType === "manager" ? "Manager View" : "Renter View"}
-                  </h1>
-                  <button
-                    className="hover:bg-gray-100 p-2 rounded-md"
-                    onClick={() => toggleSidebar()}
-                  >
-                    <X className="h-6 w-6 text-gray-600" />
-                  </button>
-                </>
-              ) : (
-                <button
-                  className="hover:bg-gray-100 p-2 rounded-md"
-                  onClick={() => toggleSidebar()}
-                >
-                  <Menu className="h-6 w-6 text-gray-600" />
-                </button>
-              )}
+            <div className="flex justify-between items-center pt-3 mb-3 px-6 min-h-[56px] w-full">
+              <h1 className="text-xl font-bold text-gray-800">
+                {userType === "manager" ? "Manager View" : "Renter View"}
+              </h1>
+              <button
+                className="hover:bg-gray-100 p-2 rounded-md"
+                onClick={toggleSidebar}
+              >
+                <X className="h-6 w-6 text-gray-600" />
+              </button>
             </div>
           </SidebarMenuItem>
         </SidebarMenu>
@@ -106,7 +109,7 @@ const AppSidebar = ({ userType }: AppSidebarProps) => {
                     isActive
                       ? "bg-gray-100"
                       : "text-gray-600 hover:bg-gray-100",
-                    open ? "text-blue-600" : "ml-[5px]"
+                    "text-blue-600"
                   )}
                 >
                   <Link href={link.href} className="w-full" scroll={false}>

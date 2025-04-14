@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateTenant = exports.createTenant = exports.getTenant = void 0;
+exports.removeFavoriteProperty = exports.addFavoriteProperty = exports.getTenantProperties = exports.updateTenant = exports.createTenant = exports.getTenant = void 0;
 const tenantService_1 = require("../service/tenantService");
 const getTenant = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -48,3 +48,54 @@ const updateTenant = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     }
 });
 exports.updateTenant = updateTenant;
+const getTenantProperties = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { cognitoId } = req.params;
+        const properties = yield tenantService_1.TenantService.getTenantProperties(cognitoId);
+        res.json(properties);
+    }
+    catch (error) {
+        res.status(500).json({
+            message: `Error retrieving tenant properties: ${error.message}`
+        });
+    }
+});
+exports.getTenantProperties = getTenantProperties;
+const addFavoriteProperty = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { cognitoId, propertyId } = req.params;
+        const result = yield tenantService_1.TenantService.addFavoriteProperty(cognitoId, Number(propertyId));
+        if (!result) {
+            res.status(404).json({ message: "Tenant not found" });
+            return;
+        }
+        if (result.alreadyExists) {
+            res.status(409).json({ message: "Property already added as favorite" });
+            return;
+        }
+        res.json(result.tenant);
+    }
+    catch (error) {
+        res.status(500).json({
+            message: `Error adding favorite property: ${error.message}`
+        });
+    }
+});
+exports.addFavoriteProperty = addFavoriteProperty;
+const removeFavoriteProperty = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { cognitoId, propertyId } = req.params;
+        const updatedTenant = yield tenantService_1.TenantService.removeFavoriteProperty(cognitoId, Number(propertyId));
+        if (!updatedTenant) {
+            res.status(404).json({ message: "Tenant not found" });
+            return;
+        }
+        res.json(updatedTenant);
+    }
+    catch (error) {
+        res.status(500).json({
+            message: `Error removing favorite property: ${error.message}`
+        });
+    }
+});
+exports.removeFavoriteProperty = removeFavoriteProperty;

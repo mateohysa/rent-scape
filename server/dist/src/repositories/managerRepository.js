@@ -11,6 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ManagerRepository = void 0;
 const client_1 = require("@prisma/client");
+const wkt_1 = require("@terraformer/wkt");
 const prisma = new client_1.PrismaClient();
 exports.ManagerRepository = {
     findByCognitoId: (cognitoId) => __awaiter(void 0, void 0, void 0, function* () {
@@ -26,5 +27,31 @@ exports.ManagerRepository = {
             where: { cognitoId },
             data
         });
+    }),
+    findPropertiesByCognitoId: (cognitoId) => __awaiter(void 0, void 0, void 0, function* () {
+        // First get all properties with their locations
+        const properties = yield prisma.property.findMany({
+            where: { managerCognitoId: cognitoId },
+            include: {
+                location: true,
+            },
+        });
+        // Format each property to include proper coordinates
+        const propertiesWithFormattedLocation = yield Promise.all(properties.map((property) => __awaiter(void 0, void 0, void 0, function* () {
+            var _a;
+            const coordinates = yield prisma.$queryRaw `
+          SELECT ST_AsText(coordinates) as coordinates 
+          FROM "Location" 
+          WHERE id = ${property.location.id}
+        `;
+            const geoJSON = (0, wkt_1.wktToGeoJSON)(((_a = coordinates[0]) === null || _a === void 0 ? void 0 : _a.coordinates) || "");
+            const longitude = geoJSON.coordinates[0];
+            const latitude = geoJSON.coordinates[1];
+            return Object.assign(Object.assign({}, property), { location: Object.assign(Object.assign({}, property.location), { coordinates: {
+                        longitude,
+                        latitude,
+                    } }) });
+        })));
+        return propertiesWithFormattedLocation;
     })
 };

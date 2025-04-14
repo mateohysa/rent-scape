@@ -21,5 +21,17 @@ exports.TenantService = {
     }),
     updateTenant: (cognitoId, tenantData) => __awaiter(void 0, void 0, void 0, function* () {
         return tenantRepository_1.TenantRepository.update(cognitoId, tenantData);
+    }),
+    getTenantProperties: (cognitoId) => __awaiter(void 0, void 0, void 0, function* () {
+        // Get all favorite properties for this tenant
+        return tenantRepository_1.TenantRepository.findByCognitoId(cognitoId);
+    }),
+    addFavoriteProperty: (cognitoId, propertyId) => __awaiter(void 0, void 0, void 0, function* () {
+        // Add a property to tenant's favorites
+        return tenantRepository_1.TenantRepository.addFavoriteProperty(cognitoId, propertyId);
+    }),
+    removeFavoriteProperty: (cognitoId, propertyId) => __awaiter(void 0, void 0, void 0, function* () {
+        // Remove a property from tenant's favorites
+        return tenantRepository_1.TenantRepository.removeFavoriteProperty(cognitoId, propertyId);
     })
 };

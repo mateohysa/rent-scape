@@ -21,5 +21,9 @@ exports.ManagerService = {
     }),
     updateManager: (cognitoId, managerData) => __awaiter(void 0, void 0, void 0, function* () {
         return managerRepository_1.ManagerRepository.update(cognitoId, managerData);
+    }),
+    getManagerProperties: (cognitoId) => __awaiter(void 0, void 0, void 0, function* () {
+        // Get all properties managed by this manager
+        return managerRepository_1.ManagerRepository.findPropertiesByCognitoId(cognitoId);
     })
 };
