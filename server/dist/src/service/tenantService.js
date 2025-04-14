@@ -24,7 +24,7 @@ exports.TenantService = {
     }),
     getTenantProperties: (cognitoId) => __awaiter(void 0, void 0, void 0, function* () {
         // Get all favorite properties for this tenant
-        return tenantRepository_1.TenantRepository.findByCognitoId(cognitoId);
+        return tenantRepository_1.TenantRepository.findPropertiesByCognitoId(cognitoId);
     }),
     addFavoriteProperty: (cognitoId, propertyId) => __awaiter(void 0, void 0, void 0, function* () {
         // Add a property to tenant's favorites

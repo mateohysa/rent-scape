@@ -71,16 +71,15 @@ const HeroSection = () => {
                 <div className="flex justify-center">
                     <Input
                         type="text"
-                        value=""
-                        onChange={() => {}}
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
                         placeholder="Search by city, neighborhood, or address"
                         className="w-full max-w-lg rounded-none rounded-l-xl border-none bg-white h-12"
-                        />
-                        <Button 
-                            onClick={() => {}}
-                            className="bg-secondary-500 text-white rounded-none rounded-r-xl h-12 border-none hover:bg-secondary-600"
-
-                        >Search</Button>
+                    />
+                    <Button 
+                        onClick={handleLocationSearch}
+                        className="bg-secondary-500 text-white rounded-none rounded-r-xl h-12 border-none hover:bg-secondary-600"
+                    >Search</Button>
                 </div>
             </div>
         </motion.div>

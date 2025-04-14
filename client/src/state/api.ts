@@ -37,29 +37,46 @@ export const api = createApi({
     getAuthUser: build.query<User, void>({
       queryFn: async (_, _queryApi, _extraoptions, fetchWithBQ) => {
         try {
+          console.log("Fetching auth session...");
           const session = await fetchAuthSession();
           const { idToken } = session.tokens ?? {};
           const user = await getCurrentUser();
           const userRole = idToken?.payload["custom:role"] as string;
+          
+          console.log("User authenticated:", { 
+            userId: user.userId, 
+            userRole 
+          });
 
           const endpoint =
             userRole === "manager"
               ? `/managers/${user.userId}`
               : `/tenants/${user.userId}`;
-
+              
+          console.log(`Fetching user details from ${endpoint}`);
           let userDetailsResponse = await fetchWithBQ(endpoint);
+          
+          console.log("User details response:", { 
+            status: userDetailsResponse.error?.status || 'success',
+            data: userDetailsResponse.data ? 'received' : 'none'
+          });
 
           // if user doesn't exist, create new user
           if (
             userDetailsResponse.error &&
             userDetailsResponse.error.status === 404
           ) {
+            console.log("User not found, creating new user record");
             userDetailsResponse = await createNewUserInDatabase(
               user,
               idToken,
               userRole,
               fetchWithBQ
             );
+            console.log("User creation response:", {
+              success: !userDetailsResponse.error,
+              data: userDetailsResponse.data ? 'received' : 'none'
+            });
           }
 
           return {
@@ -70,6 +87,7 @@ export const api = createApi({
             },
           };
         } catch (error: any) {
+          console.error("Auth user error:", error.message, error.stack);
           return { error: error.message || "Could not fetch user data" };
         }
       },

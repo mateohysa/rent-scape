@@ -1,6 +1,6 @@
 "use client";
 import { usePathname } from "next/navigation";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Sidebar,
   SidebarContent,
@@ -22,10 +22,30 @@ import {
 import { NAVBAR_HEIGHT } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { useGetAuthUserQuery, useGetLeasesQuery } from "@/state/api";
 
 const AppSidebar = ({ userType }: AppSidebarProps) => {
   const pathname = usePathname();
   const { toggleSidebar, open } = useSidebar();
+  const { data: authUser } = useGetAuthUserQuery();
+  const [residencesHref, setResidencesHref] = useState("/tenants/favorites");
+  
+  // Get leases to find the first residence ID for direct navigation
+  const { data: leases } = useGetLeasesQuery(
+    userType === "tenant" ? authUser?.cognitoInfo?.userId || "0" : "0",
+    { 
+      skip: !authUser?.cognitoInfo?.userId || userType !== "tenant",
+    }
+  );
+  
+  // Update residences link when leases are loaded
+  useEffect(() => {
+    if (leases && leases.length > 0 && leases[0].propertyId) {
+      setResidencesHref(`/tenants/residences/${leases[0].propertyId}`);
+    } else {
+      setResidencesHref("/tenants/favorites");
+    }
+  }, [leases]);
 
   const navLinks =
     userType === "manager"
@@ -45,7 +65,7 @@ const AppSidebar = ({ userType }: AppSidebarProps) => {
             label: "Applications",
             href: "/tenants/applications",
           },
-          { icon: Home, label: "Residences", href: "/tenants/residences" },
+          { icon: Home, label: "Residences", href: residencesHref },
           { icon: Settings, label: "Settings", href: "/tenants/settings" },
         ];
 

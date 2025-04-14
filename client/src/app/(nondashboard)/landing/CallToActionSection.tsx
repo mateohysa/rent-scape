@@ -1,11 +1,55 @@
 "use client";
 
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { fetchAuthSession } from "aws-amplify/auth";
 
 const CallToActionSection = () => {
+  const [authState, setAuthState] = useState({
+    isLoggedIn: false,
+    userRole: "",
+    isLoading: true
+  });
+  
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const session = await fetchAuthSession();
+        const isLoggedIn = !!session.tokens;
+        
+        if (isLoggedIn && session.tokens) {
+          const userRole = session.tokens.idToken?.payload["custom:role"] as string || "";
+          setAuthState({
+            isLoggedIn: true,
+            userRole: userRole.toLowerCase(),
+            isLoading: false
+          });
+        } else {
+          setAuthState({
+            isLoggedIn: false,
+            userRole: "",
+            isLoading: false
+          });
+        }
+      } catch (error) {
+        // User is not authenticated - this is an expected case
+        setAuthState({
+          isLoggedIn: false,
+          userRole: "",
+          isLoading: false
+        });
+      }
+    };
+    
+    checkAuth();
+  }, []);
+  
+  const { isLoggedIn, userRole, isLoading } = authState;
+  const isManager = userRole === "manager";
+  const isTenant = userRole === "tenant";
+
   return (
     <div className="relative py-24">
       <Image
@@ -34,19 +78,26 @@ const CallToActionSection = () => {
               location.
             </p>
             <div className="flex justify-center md:justify-start gap-4">
-              <button
-                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-                className="inline-block text-primary-700 bg-white rounded-lg px-6 py-3 font-semibold hover:bg-primary-500 hover:text-primary-50"
-              >
-                Search
-              </button>
-              <Link
-                href="/signup"
-                className="inline-block text-white bg-secondary-500 rounded-lg px-6 py-3 font-semibold hover:bg-secondary-600"
-                scroll={false}
-              >
-                Sign Up
-              </Link>
+              {/* Show Search button for tenants or not logged in users */}
+              {(!isLoggedIn || isTenant) && (
+                <button
+                  onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                  className="inline-block text-primary-700 bg-white rounded-lg px-6 py-3 font-semibold hover:bg-primary-500 hover:text-primary-50"
+                >
+                  Search
+                </button>
+              )}
+              
+              {/* Show Sign Up button only for not logged in users */}
+              {!isLoggedIn && (
+                <Link
+                  href="/signup"
+                  className="inline-block text-white bg-secondary-500 rounded-lg px-6 py-3 font-semibold hover:bg-secondary-600"
+                  scroll={false}
+                >
+                  Sign Up
+                </Link>
+              )}
             </div>
           </div>
         </div>

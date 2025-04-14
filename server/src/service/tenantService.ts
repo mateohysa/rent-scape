@@ -16,7 +16,7 @@ export const TenantService = {
   
   getTenantProperties: async (cognitoId: string) => {
     // Get all favorite properties for this tenant
-    return TenantRepository.findByCognitoId(cognitoId);
+    return TenantRepository.findPropertiesByCognitoId(cognitoId);
   },
   
   addFavoriteProperty: async (cognitoId: string, propertyId: number) => {
