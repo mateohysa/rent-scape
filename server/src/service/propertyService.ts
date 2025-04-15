@@ -6,7 +6,7 @@ import { Express } from "express";
 
 // Initialize S3 client
 const s3Client = new S3Client({
-    region: process.env.AWS_REGION || "eu-east-1",
+    region: process.env.AWS_REGION || "eu-north-1",
 });
 
 export const PropertyService = {

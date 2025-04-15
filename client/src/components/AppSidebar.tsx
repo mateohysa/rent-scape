@@ -50,23 +50,25 @@ const AppSidebar = ({ userType }: AppSidebarProps) => {
   const navLinks =
     userType === "manager"
       ? [
-          { icon: Building, label: "Properties", href: "/managers/properties" },
+          { icon: Building, label: "Properties", href: "/managers/properties", id: "properties" },
           {
             icon: FileText,
             label: "Applications",
             href: "/managers/applications",
+            id: "applications"
           },
-          { icon: Settings, label: "Settings", href: "/managers/settings" },
+          { icon: Settings, label: "Settings", href: "/managers/settings", id: "settings" },
         ]
       : [
-          { icon: Heart, label: "Favorites", href: "/tenants/favorites" },
+          { icon: Heart, label: "Favorites", href: "/tenants/favorites", id: "favorites" },
           {
             icon: FileText,
             label: "Applications",
             href: "/tenants/applications",
+            id: "applications"
           },
-          { icon: Home, label: "Residences", href: residencesHref },
-          { icon: Settings, label: "Settings", href: "/tenants/settings" },
+          { icon: Home, label: "Residences", href: residencesHref, id: "residences" },
+          { icon: Settings, label: "Settings", href: "/tenants/settings", id: "settings" },
         ];
 
   // If sidebar is closed, only render a small toggle button
@@ -121,7 +123,7 @@ const AppSidebar = ({ userType }: AppSidebarProps) => {
             const isActive = pathname === link.href;
 
             return (
-              <SidebarMenuItem key={link.href}>
+              <SidebarMenuItem key={link.id || link.href}>
                 <SidebarMenuButton
                   asChild
                   className={cn(
