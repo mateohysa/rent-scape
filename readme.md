@@ -353,40 +353,7 @@ model Payment {
    - Tenant makes payments that update payment status
    - Historical payment data is maintained for reporting
 
-## 8. Testing
-
-### Testing Methodology
-RentScape employs a comprehensive testing strategy:
-
-1. **Unit Testing**:
-   - Testing individual components and functions
-   - Focus on core business logic and utility functions
-   - Using Jest for JavaScript/TypeScript testing
-
-2. **Integration Testing**:
-   - Testing interactions between different modules
-   - API endpoint testing with supertest
-   - Database query testing with test databases
-
-3. **End-to-End Testing**:
-   - Testing complete user workflows
-   - Using Cypress for browser automation
-   - Focus on critical paths like user registration, property search, and application submission
-
-4. **Accessibility Testing**:
-   - Manual and automated checks for WCAG compliance
-   - Using axe-core for automated accessibility audits
-
-5. **Performance Testing**:
-   - Load testing API endpoints
-   - Measuring page load times and optimizing where needed
-
-### Test Environments
-- Development environment for unit and integration tests
-- Staging environment that mirrors production for E2E tests
-- CI pipeline running tests on each pull request
-
-## 9. Deployment and Maintenance
+## 8. Deployment and Maintenance
 
 ### Deployment Process
 RentScape is deployed using a cloud-based infrastructure:
@@ -406,7 +373,7 @@ RentScape is deployed using a cloud-based infrastructure:
    - Regular backups and point-in-time recovery capability
    - Read replicas for scaling read operations
 
-## 11. Security Considerations
+## 10. Security Considerations
 
 ### Authentication and Authorization
 - **User Authentication**: Implemented using AWS Cognito for secure identity management
@@ -429,7 +396,7 @@ RentScape is deployed using a cloud-based infrastructure:
 - **Cross-Site Request Forgery (CSRF) Protection**: Anti-CSRF tokens for state-changing operations
 - **SQL Injection Prevention**: Parameterized queries via Prisma ORM
 
-## 12. Conclusion
+## 11. Conclusion
 
 RentScape is a comprehensive property rental platform that addresses the needs of both property managers and tenants. By digitizing the entire rental process from property discovery to payment management, it provides significant value to all stakeholders.
 
