@@ -5,7 +5,7 @@
 **/logs/**
 **/temp/**
 .DS_Store
-
+final.md
 .env
 .env.local
 .env.development.local
